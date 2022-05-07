@@ -15,4 +15,4 @@ golang のサンプル集です。
 - ToDo: security
   - https://github.com/unrolled/secure
 - unit-testing
-  - gomock を利用した単体テストのサンプルコードです
+  - gomock と assert ライブラリを利用した単体テストのサンプルコードです

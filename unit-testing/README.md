@@ -2,6 +2,7 @@
 
 ```bash
 $ go mod init github.com/pepese/golang-sample/unit-testing
+$ go get -u github.com/go-playground/assert
 $ go get -u github.com/golang/mock/gomock
 $ go install github.com/golang/mock/mockgen@v1.6.0
 $ mockgen -version
@@ -10,7 +11,14 @@ v1.6.0
 
 ## 概要
 
-[gomock](https://github.com/golang/mock) を利用します。  
+### assert
+
+- https://github.com/go-playground/assert
+
+### gomock
+
+- https://github.com/golang/mock
+
 以下でモックのコードを生成します。  
 なお、 `hoge` というディレクトリ・パッケージがあった場合、そのディレクトリ内に `mock_hoge` というディレクトリを作成してモックコードを出力のが慣例のようです。
 
