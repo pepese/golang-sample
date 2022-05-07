@@ -16,3 +16,5 @@ golang のサンプル集です。
   - https://github.com/unrolled/secure
 - unit-testing
   - gomock と assert ライブラリを利用した単体テストのサンプルコードです
+- combined-testing
+  - postman 、 newman を利用した結合試験のサンプルです
