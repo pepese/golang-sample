@@ -15,6 +15,7 @@ $ go get github.com/rs/xid
     - `accessLog` 関数にてアクセスログを出力します
 - `adapter/controller` ： 以下のみを実施
   - リクエストのパースとバリデーション
+    - JSON パースやバリデーションなどの構造体タグは usecase の *Request/*Response にのみ付与する（domain entity には決して付与しない）
   - usecase の呼び出し
   - レスポンスの view を生成
 - `usecase`

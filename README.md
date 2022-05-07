@@ -1,6 +1,6 @@
 # golang-sample
 
-golang のサンプルです。
+golang のサンプル集です。
 
 - zap
   - ログライブラリ zap のサンプルコードです
@@ -10,3 +10,7 @@ golang のサンプルです。
   - ORM ライブラリ gorm のサンプルコードです
 - envconfig
   - 環境変数から値を取得するライブラリ envconfig のサンプルコードです
+- validator
+  - 入力チェックライブラリ validator のサンプルコードです
+- ToDo: security
+  - https://github.com/unrolled/secure
