@@ -37,26 +37,26 @@ func NewUser() *user {
 }
 
 func (u *user) List(c context.Context, m *ListUsersRequest) (*ListUsersResponse, error) {
-	fmt.Println("user.List executed.")
+	fmt.Printf("user.List executed with TraceID-%s.\n", c.Value("traceID"))
 	return &ListUsersResponse{}, nil
 }
 
 func (u *user) Get(c context.Context, m *GetUserRequest) (*UserResponse, error) {
-	fmt.Println("user.Get executed.")
+	fmt.Printf("user.Get executed with TraceID-%s.\n", c.Value("traceID"))
 	return &UserResponse{}, nil
 }
 
 func (u *user) Create(c context.Context, m *CreateUserRequest) (*UserResponse, error) {
-	fmt.Println("user.Create executed.")
+	fmt.Printf("user.Create executed with TraceID-%s.\n", c.Value("traceID"))
 	return &UserResponse{}, nil
 }
 
 func (u *user) Update(c context.Context, m *UpdateUserRequest) (*UserResponse, error) {
-	fmt.Println("user.Update executed.")
+	fmt.Printf("user.Update executed with TraceID-%s.\n", c.Value("traceID"))
 	return &UserResponse{}, nil
 }
 
 func (u *user) Delete(c context.Context, m *DeleteUserRequest) error {
-	fmt.Println("user.Delete executed.")
+	fmt.Printf("user.Delete executed with TraceID-%s.\n", c.Value("traceID"))
 	return nil
 }

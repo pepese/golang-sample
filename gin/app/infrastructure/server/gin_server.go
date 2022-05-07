@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -10,6 +11,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/rs/xid"
 )
 
 var (
@@ -23,6 +25,7 @@ func NewGinServer() *gin.Engine {
 	gEnOnce.Do(func() {
 		e := gin.New()
 		e.Use(requestScope())
+		e.Use(accessLog())
 		e.Use(gin.Recovery())
 		gEn = e
 	})
@@ -30,8 +33,18 @@ func NewGinServer() *gin.Engine {
 }
 
 func requestScope() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// set traceID to context.Context as request scope
+		traceID := xid.New().String()
+		ctx := c.Request.Context()
+		ctx = context.WithValue(ctx, "traceID", traceID)
+		c.Request = c.Request.WithContext(ctx)
+	}
+}
+
+func accessLog() gin.HandlerFunc {
 	// Logging Skip Logic
-	notlogged := []string{"/healthcheck"}
+	notlogged := []string{"healthcheck"}
 	var skip map[string]struct{}
 	if length := len(notlogged); length > 0 {
 		skip = make(map[string]struct{}, length)
@@ -39,7 +52,15 @@ func requestScope() gin.HandlerFunc {
 			skip[path] = struct{}{}
 		}
 	}
-	return func(c *gin.Context) {}
+	return func(c *gin.Context) {
+		path := c.Request.URL.Path
+		if _, ok := skip[path]; !ok {
+			ctx := c.Request.Context()
+			fmt.Printf("Request with TraceID-%s.\n", ctx.Value("traceID"))        // Request Log
+			defer fmt.Printf("Response with TraceID-%s.\n", ctx.Value("traceID")) // Response Log
+			c.Next()
+		}
+	}
 }
 
 func (hs *ginServer) Run() {
