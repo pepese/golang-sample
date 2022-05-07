@@ -4,20 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
+	"github.com/pepese/golang-sample/gorm/app/infrastructure/datastore"
 )
 
 func main() {
-	connectTemplate := "%s:%s@tcp(127.0.0.1:3306)/%s?charset=utf8mb4&parseTime=True&loc=Local"
-	user := "testuser"
-	passwd := "testpass"
-	database := "testdb"
-	dsn := fmt.Sprintf(connectTemplate, user, passwd, database)
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		panic(err)
-	}
+	db := datastore.Gorm()
 	db.AutoMigrate(&User{})
 
 	// create
