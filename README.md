@@ -6,6 +6,7 @@ golang のサンプル集です。
   - ログライブラリ zap のサンプルコードです
 - gin
   - Web フレームワーク gin のサンプルコードです
+  - 「context.Context 利用方針」についてはこちらの README.md を参照
 - gorm
   - ORM ライブラリ gorm のサンプルコードです
 - envconfig
